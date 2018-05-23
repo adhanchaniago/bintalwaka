@@ -25,7 +25,7 @@ class C_kelompok extends CI_Controller {
                $data[] = array(
                     $r->id_kelompok,
                     $r->nama_kelompok,
-                    "<button class=\"btn btn-primary btn-sm\">EDIT</button> <button class=\"btn btn-danger btn-sm\">DELETE</button>"
+                    "<button class=\"btn btn-primary btn-sm\" onclick=\"editkel(".$r->id_kelompok.",'".$r->nama_kelompok."')\">EDIT</button> <button class=\"btn btn-danger btn-sm\" onclick=\"hapuskel(".$r->id_kelompok.")\">DELETE</button>"
                );
           }
 
@@ -41,29 +41,33 @@ class C_kelompok extends CI_Controller {
 
     public function create()
     {
-        $tanggal = $this->input->post('tgl');
-        $user = $this->input->post('user');
-        $judul = $this->input->post('judul');
-        $isi = $this->input->post('isi');
+        $nama = $this->input->post('kelompok');
 
-        $data = array('judul' => $judul,
-                       'slug' => $isi,
-                       'isi' => $isi,
-                       'tanggal' => $tgl,
-                       'id_user' => $user);
-        $this->m_berita->create($data);
-        header("location: ".base_url('admin/berita'));
+        $data = array('nama_kelompok' => $nama);
+        $this->m_kelompok->create($data);
+        header("location: ".base_url('admin/bintalwaka'));
 
+    }
+
+    public function coba()
+    {
+        echo "Helo";
     }
 
     public function update()
     {
-        echo 'Helloo';
+        $id = $this->input->post('id-kelompok-edit');
+        $nama = $this->input->post('kelompok-edit');
+
+        $data = array('nama_kelompok' => $nama);
+        $this->m_kelompok->update($id,$data);
+        header("location: ".base_url('admin/bintalwaka'));
     }
 
-    public function delete()
+    public function delete($id)
     {
-        echo 'Helloo';
+        $this->m_kelompok->delete($id);
+        header("location: ".base_url('admin/bintalwaka'));
     }
 
     //JSON Formatter

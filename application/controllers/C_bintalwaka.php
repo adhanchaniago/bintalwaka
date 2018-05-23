@@ -24,7 +24,6 @@ class C_bintalwaka extends CI_Controller {
 
                $data[] = array(
                     $r->id_bintalwaka,
-                    $r->nim,
                     $r->nama_kelompok,
                     $r->tanggal,
                     $r->tahun,

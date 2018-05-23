@@ -15,7 +15,6 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>NIM</th>
                             <th>Nama Kelompok</th>
                             <th>Tanggal</th>
                             <th>Tahun</th>
@@ -33,7 +32,7 @@
                 <!-- button tambah -->
                 <div class"row">
                     <p>
-                        <button type="button" class="btn btn-primary tambah-kelompok" style="margin-top:15px" id="btntambahkelompok"><i class="fa fa-plus"></i> Tambah</button>
+                        <button type="button" class="btn btn-primary tambah-kelompok" style="margin-top:15px" data-toggle="modal" data-target="#tambah-kelompok" id="btntambahkelompok"><i class="fa fa-plus"></i> Tambah</button>
                     </p>
                 </div>
                 <table width="100%" class="table table-striped table-bordered table-hover" id="tabel-kelompok">
@@ -45,14 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                            <td></td>
-                            <td></td>
-                            <td style="text-align:center">
-                                <button type="button" class="btn btn-primary" onclick="editLantai('')"><i class="fa fa-pencil-square"></i> Edit</button>
-                                <button type="button" class="btn btn-danger" onclick="hapusLantai('')"><i class="fa fa-trash"></i> Hapus</button>
-                            </td>
-                            </tr>
+                            
                     </tbody>
                 </table>
                 <!-- /.table-responsive -->
@@ -61,3 +53,57 @@
         <!-- /.tab-content -->
     </div>
 </div>
+
+<!-- Modal Tambah -->
+<div class="modal fade" id="tambah-kelompok" tabindex="-1" role="dialog" aria-labelledby="tambah-kelompok" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Kelompok</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?php echo base_url('c_kelompok/create') ?>" method="post">
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Nama Kelompok</label>
+                <input type="text" name="kelompok" class="form-control" required>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="edit-kelompok" tabindex="-1" role="dialog" aria-labelledby="edit-kelompok" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Kelompok</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?php echo base_url('c_kelompok/update'); ?>" method="post">
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Nama Kelompok</label>
+                <input type="text" name="kelompok-edit" class="form-control" required>
+                <input type="hidden" name="id-kelompok-edit" class="form-control">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

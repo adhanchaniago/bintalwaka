@@ -395,6 +395,20 @@
     })
   }
 
+  function hapuskel(id) { 
+    window.location = "<?php echo base_url('c_kelompok/delete/')?>" + id;
+  }
+
+  function editkel(id,nama) { 
+    var id_kelompok = id;
+    var nama_kelompok = nama;
+    
+    $('input[name=id-kelompok-edit]').val(id_kelompok);
+    $('input[name=kelompok-edit]').val(nama_kelompok);
+
+    $('#edit-kelompok').modal('show'); 
+  }
+
   function editmhs(nim) {
     // window.location.href = "<?php echo base_url('admin/mahasiswa_edit/');?>.nim";
     var base_url = "<?php echo base_url('admin/mahasiswa_edit/');?>";

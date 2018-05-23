@@ -44,6 +44,13 @@ class Admin extends CI_Controller {
 
 	public function kelompok()
 	{
+		$data['kelompok'] = $this->m_mahasiswa->read()->result();		
+		$this->template->load('template/admin', 'content/a_kelompok');
+	}
+
+	public function kelompok_edit($id)
+	{
+		$data['kelompok'] = $this->m_mahasiswa->readBy($id)->result();		
 		$this->template->load('template/admin', 'content/a_kelompok');
 	}
 
