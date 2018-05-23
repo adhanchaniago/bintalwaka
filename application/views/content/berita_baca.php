@@ -1,40 +1,38 @@
-    <!-- Page Content -->
-    <div class="container content">
+<!-- Page Content -->
+    <div class="container">
 
       <div class="row">
 
-        <!-- Blog Entries Column -->
-        <div class="col-md-8">
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+        <?php foreach ($berita as $brt) { ?>
 
-          <h2 class="my-4">Selamat Datang
-            <!-- <small>Secondary Text</small> -->
-          </h2>
+        <?php }?>
+          <!-- Title -->
+          <h1 class="mt-4"><?php echo $brt->judul; ?></h1>
 
-          <!-- Blog Post -->
-          <?php foreach ($berita as $b) { ?>
-            <div class="card mb-4">
-              <img class="card-img-top" src="<?= base_url('assets/image/berita/').$b->image;?>" alt="Card image cap">
-              <div class="card-body">
-                <h2 class="card-title"><?= $b->judul; ?></h2>
-                <p class="card-text"><?= $b->slug; ?></p>
-                <a href="<?php echo base_url('home/berita/'.$b->id_berita)?>" class="btn btn-primary">Read More &rarr;</a>
-              </div>
-              <div class="card-footer text-muted">
-                Posted on <?= $b->tanggal; ?> by
-                <a href="#"><?= $b->id_user; ?></a>
-              </div>
-            </div>
-          <?php } ?>
+          <!-- Author -->
+          <p class="lead">
+            by
+            <a href="#"><?php echo $brt->id_user; ?></a>
+          </p>
 
-          <!-- Pagination -->
-          <ul class="pagination justify-content-center mb-4">
-            <li class="page-item">
-              <a class="page-link" href="#">&larr; Older</a>
-            </li>
-            <li class="page-item disabled">
-              <a class="page-link" href="#">Newer &rarr;</a>
-            </li>
-          </ul>
+          <hr>
+
+          <!-- Date/Time -->
+          <p>Posted on January <?php echo $brt->tanggal; ?></p>
+
+          <hr>
+
+          <!-- Preview Image -->
+          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+
+          <hr>
+
+          <!-- Post Content -->
+          <p class="lead"><?php echo $brt->isi; ?></p>
+
+          <hr>
 
         </div>
 
@@ -91,7 +89,7 @@
 
           <!-- Side Widget -->
           <div class="card my-4">
-            <h5 class="card-header">About Us</h5>
+            <h5 class="card-header">Side Widget</h5>
             <div class="card-body">
               You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
             </div>

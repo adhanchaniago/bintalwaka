@@ -7,7 +7,7 @@
 
           <h3 class="my-4"><b>Form Pendaftaran</b></h3>
           <hr>
-          <form method="post" action="" id="form-pendaftaran">
+          <form enctype="multipart/form-data" method="post" action="" id="form-pendaftaran">
             <div class="row">
               <div class="col-lg-8">
 
@@ -22,12 +22,13 @@
                     <div class="form-group">
                       <label>Upload Foto</label>
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="inputGroupFile01">
+                          <input type="file" class="custom-file-input" id="inputGroupFile01" name="foto">
                           <label class="custom-file-label" for="inputGroupFile01"><i>Pilih Foto</i></label>
                         </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -42,6 +43,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -61,6 +63,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -75,6 +78,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -96,6 +100,7 @@
                   </div>
 
                 </div>
+
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -104,6 +109,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -112,6 +118,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
@@ -120,7 +127,8 @@
                     </div>
                   </div>
                 </div>
-               <div class="row">
+
+                <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
                         <label>Riwayat Pendidikan (SD, SMP dan SMA)</label>                        
@@ -128,7 +136,8 @@
                     </div>
                   </div>
                 </div>
-               <div class="row">
+
+                <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
                         <label>Prestasi</label>                        
@@ -136,6 +145,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
@@ -145,8 +155,19 @@
                   </div>
                 </div>
 
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Riwayat Penyakit</label>                        
+                        <textarea name="riwayat-penyakit" class="form-control" rows="3"></textarea>
+                    </div>
+                  </div>
+                </div>
+
               </div>
+
             </div>
+
             <div class="row">
               <div class="col-lg-8">
                 <div class="row">
@@ -159,6 +180,7 @@
                 </div>
               </div>
             </div>
+
           </form>
         </div>
 

@@ -146,7 +146,7 @@
         $('#form-pendaftaran').submit(function (e) { 
           e.preventDefault();
           $.ajax({
-            url:'<?php echo base_url('c_mahasiswa/create')?>',
+            url:'<?php echo base_url('c_mahasiswa/do_upload')?>',
             type:'POST',
             data: $(this).serialize(),
             success: function(response) {

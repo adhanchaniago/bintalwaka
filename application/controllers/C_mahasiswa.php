@@ -68,8 +68,8 @@ class C_mahasiswa extends CI_Controller {
         $hobi = $this->input->post('hobi');
         $noHp = $this->input->post('no-hp');
         $alamat = $this->input->post('alamat');
-        $rpendidikan = $this->input->post('riwayat_pendidikan');
-        $rpenyakit = $this->input->post('riwayat_penyakit');
+        $rpendidikan = $this->input->post('riwayat-pendidikan');
+        $rpenyakit = $this->input->post('riwayat-penyakit');
         $prestasi = $this->input->post('prestasi');
         $motivasi = $this->input->post('motivasi');
 
@@ -86,7 +86,8 @@ class C_mahasiswa extends CI_Controller {
                        'riwayat_pendidikan' => $rpendidikan,
                        'prestasi' => $prestasi,
                        'riwayat_penyakit' => $rpenyakit,
-                       'motivasi' => $motivasi
+                       'motivasi' => $motivasi,
+                       'image' => $nim.".jpg"
                     );
         
         $insert = $this->m_mahasiswa->create($data);
@@ -95,7 +96,28 @@ class C_mahasiswa extends CI_Controller {
         } else {
             $this->jsonformatter(false,'gagal','',200);
         }
-        //header("location: ".base_url('pendaftaran'));
+        // header("location: ".base_url('pendaftaran'));
+    }
+
+    //fungsi upload foto mahasiswa
+    public function do_upload()
+    {
+        $config['file_name']            = $this->input->post('nim');
+        $config['upload_path']          = './assets/image/mahasiswa/';
+        $config['allowed_types']        = 'jpg|png';
+        $config['max_size']             = 2048;
+        $config['max_width']            = 400;
+        $config['max_height']           = 400;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('foto')) {
+            $this->jsonformatter(true,'gagal','',200);
+            // die();
+        } else {
+            // $this->jsonformatter(false,'sukses','');
+            $this->create();
+        }
     }
 
     public function update()

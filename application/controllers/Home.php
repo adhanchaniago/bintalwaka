@@ -10,6 +10,12 @@ class Home extends CI_Controller {
 		// $this->load->view('template/home');
 	}
 
+	public function berita($id)
+	{
+		$data['berita'] = $this->m_berita->readBy($id)->result();
+		$this->template->load('template/home', 'content/berita_baca', $data);
+	}
+
 	public function foto()
 	{
 		$this->template->load('template/home','content/foto');

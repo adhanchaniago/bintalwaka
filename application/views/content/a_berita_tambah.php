@@ -1,6 +1,6 @@
 <div class"row">
     <div class="col-lg-10">
-        <form method="post" action="<?= base_url('c_berita/create')?>">
+        <form enctype="multipart/form-data" action="<?= base_url('c_berita/do_upload')?>" method="post">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
@@ -21,7 +21,7 @@
             </div>
             <div class="input-group mb-3">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" name="banner" required>
                     <label class="custom-file-label" for="inputGroupFile01">Pilih Gambar</label>
                 </div>
             </div>
