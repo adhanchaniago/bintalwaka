@@ -28,6 +28,8 @@ class C_mahasiswa extends CI_Controller {
                     $r->nama_lengkap,
                     $r->nama_jurusan,
                     $r->no_HP,
+                    $r->biaya,
+                    $r->sertifikat,
                     "<button class=\"btn btn-primary btn-sm\" onclick=\"editmhs(".$r->nim.")\">EDIT</button> <button class=\"btn btn-danger btn-sm\" onclick=\"hapusmhs(".$r->nim.")\">DELETE</button>"
                );
           }
@@ -63,7 +65,6 @@ class C_mahasiswa extends CI_Controller {
         $jk = $this->input->post('jk');
         $tempat = $this->input->post('tempat');
         $tgl = $this->input->post('tgl');
-        $fakultas = $this->input->post('fakultas');
         $jurusan = $this->input->post('jurusan');
         $hobi = $this->input->post('hobi');
         $noHp = $this->input->post('no-hp');
@@ -133,10 +134,13 @@ class C_mahasiswa extends CI_Controller {
         $hobi = $this->input->post('hobi');
         $noHp = $this->input->post('no-hp');
         $alamat = $this->input->post('alamat');
-        $rpendidikan = $this->input->post('riwayat_pendidikan');
-        $rpenyakit = $this->input->post('riwayat_penyakit');
+        $rpendidikan = $this->input->post('riwayat-pendidikan');
+        $rpenyakit = $this->input->post('riwayat-penyakit');
         $prestasi = $this->input->post('prestasi');
-        $motivasi = $this->input->post('motivasi');
+        $motivasi = $this->input->post('motivasi');        
+        $biaya = $this->input->post('biaya');
+        $idcard = $this->input->post('idcard');
+        $sertifikat = $this->input->post('sertifikat');
 
         $data = array( 'nama_lengkap' => $nl,
                        'nama_panggilan' => $np,
@@ -150,7 +154,11 @@ class C_mahasiswa extends CI_Controller {
                        'riwayat_pendidikan' => $rpendidikan,
                        'prestasi' => $prestasi,
                        'riwayat_penyakit' => $rpenyakit,
-                       'motivasi' => $motivasi
+                       'motivasi' => $motivasi,
+                       'biaya' => $biaya,
+                       'idcard' => $idcard,
+                       'sertifikat' => $sertifikat,
+                       'image' => $nim.".jpg"
                     );
         $this->m_mahasiswa->update($nim,$data);
         header("location: ".base_url('admin/mahasiswa'));

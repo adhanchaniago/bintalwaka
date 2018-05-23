@@ -207,6 +207,24 @@
                 }
         ]
 		});
+    $('#fakultas').on('change', function() {
+      var id_jur = this.value;
+      $.ajax({
+        url:'<?php echo base_url('pendaftaran/jurusan')?>',
+        type:'POST',
+        data: {id: id_jur},
+        success: function( json ) {
+            $('#jurusan').find('option').remove().end()
+            var jurusan = json.berita;
+            var jur_length = jurusan.length;
+            for (let i = 0; i < jur_length; i++) {
+              var jur = jurusan[i];
+              // console.log(jur.nama_jurusan);
+              $('#jurusan').append($('<option>').text(jur.nama_jurusan).attr('value', jur.id_jurusan));
+            }
+        }
+      });
+    })
     
   });
 
@@ -375,6 +393,12 @@
         });
       }
     })
+  }
+
+  function editmhs(nim) {
+    // window.location.href = "<?php echo base_url('admin/mahasiswa_edit/');?>.nim";
+    var base_url = "<?php echo base_url('admin/mahasiswa_edit/');?>";
+    window.location = base_url + nim;
   }
 
 

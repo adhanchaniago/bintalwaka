@@ -31,6 +31,12 @@ class Admin extends CI_Controller {
 		$this->template->load('template/admin', 'content/a_mahasiswa');
 	}
 
+	public function mahasiswa_edit($nim)
+	{
+		$data['mahasiswa'] = $this->m_mahasiswa->readBy($nim)->result();		
+		$this->template->load('template/admin', 'content/a_mahasiswa_edit',$data);
+	}
+
 	public function bintalwaka()
 	{
 		$this->template->load('template/admin', 'content/a_bintalwaka');

@@ -5,7 +5,9 @@
                 <th>NIM</th>
                 <th>Nama</th>
                 <th>Jurusan</th>
-                <th>No HP</th>
+                <th>No Hp</th>
+                <th>Biaya</th>
+                <th>Sertifikat</th>
                 <th class="text-center">Aksi</th>
             </tr>
         </thead>

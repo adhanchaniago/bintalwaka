@@ -6,7 +6,7 @@ class M_mahasiswa extends CI_Model{
   //read data dari tabel mahasiswa, jurusan, bintalwaka. 
   function read_gab()
   {
-      $this->db->select('tm.nim,tm.nama_lengkap,tj.nama_jurusan,tm.no_HP');
+      $this->db->select('tm.nim,tm.nama_lengkap,tj.nama_jurusan,tj.id_jurusan,tm.no_HP,tm.biaya,tm.sertifikat');
       $this->db->from('t_mahasiswa tm');
       $this->db->join('t_jurusan tj','tj.id_jurusan=tm.id_jurusan','inner');
       return $this->db->get();
