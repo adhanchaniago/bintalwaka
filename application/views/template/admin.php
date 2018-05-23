@@ -415,6 +415,18 @@
     window.location = base_url + nim;
   }
 
+  function edituser(id,user,pass) {
+    var id_user = id;
+    var username = user;
+    var password = pass;
+    
+    $('input[name=id-user-edit]').val(id_user);
+    $('input[name=user-edit]').val(username);
+    $('input[name=pass-edit]').val(password);
+
+    $('#edit-user').modal('show');
+  }
+
 
  </script>
 </html>

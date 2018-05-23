@@ -25,7 +25,7 @@ class C_user extends CI_Controller {
                $data[] = array(
                     $r->id_user,
                     $r->username,
-                    "<button class=\"btn btn-primary btn-sm\" onclick=\"edituser(".$r->id_user.")\">EDIT</button> <button class=\"btn btn-danger btn-sm\" onclick=\"hapususer(".$r->id_user.")\">DELETE</button>"
+                    "<button class=\"btn btn-primary btn-sm\" onclick=\"edituser(".$r->id_user.",'".$r->username."','".$r->password."')\">EDIT</button> <button class=\"btn btn-danger btn-sm\" onclick=\"hapususer(".$r->id_user.")\">DELETE</button>"
                );
           }
 
@@ -41,21 +41,23 @@ class C_user extends CI_Controller {
 
     public function create()
     {
-        $username = $this->input->post('username');
-        $pass = $this->input->post('password');
+        $username = $this->input->post('user');
+        $pass = $this->input->post('pass');
 
-        $data = array('username' => $judul,
-                       'password' => $isi);
+        $data = array('username' => $username,
+                       'password' => $pass);
         $this->m_user->create($data);
         header("location: ".base_url('admin/user'));
     }
 
     public function update()
     {
-        $id = $this->input->post('id-user');
+        $id = $this->input->post('id-user-edit');
+        $username = $this->input->post('user-edit');
+        $pass = $this->input->post('pass-edit');
 
-        $data = array('username' => $judul,
-                       'password' => $isi);
+        $data = array('username' => $username,
+                        'password' => $pass);
         $this->m_user->update($id,$data);
         header("location: ".base_url('admin/user'));
     }

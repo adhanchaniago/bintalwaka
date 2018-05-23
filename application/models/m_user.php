@@ -6,7 +6,7 @@ class M_user extends CI_Model{
   //read data dari tabel mahasiswa, jurusan, bintalwaka. 
   function read()
   {
-      $this->db->select('tu.id_user,tu.username');
+      $this->db->select('tu.*');
       $this->db->from('t_user tu');
       return $this->db->get();
   }
