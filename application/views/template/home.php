@@ -145,10 +145,16 @@
 
         $('#form-pendaftaran').submit(function (e) { 
           e.preventDefault();
+          
+          var formData = new FormData($(this)[0]);
+
           $.ajax({
             url:'<?php echo base_url('c_mahasiswa/do_upload')?>',
             type:'POST',
-            data: $(this).serialize(),
+            enctype: 'multipart/form-data',
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function(response) {
               if (response.message === 'sukses') {
                 swal({
