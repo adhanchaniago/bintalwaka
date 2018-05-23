@@ -42,6 +42,7 @@ class C_berita extends CI_Controller {
         $data = array('judul' => $judul,
                        'slug' => $isi,
                        'isi' => $isi,
+                       'slug' => $isi,
                        'tanggal' => $tgl,
                        'id_user' => $user);
         $this->m_berita->update($id,$data);

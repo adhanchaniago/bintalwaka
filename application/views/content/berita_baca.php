@@ -14,7 +14,7 @@
           <!-- Author -->
           <p class="lead">
             by
-            <a href="#"><?php echo $brt->id_user; ?></a>
+            <a href="#"><?php echo $brt->username; ?></a>
           </p>
 
           <hr>
@@ -25,7 +25,7 @@
           <hr>
 
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+          <img class="img-fluid rounded" src="<?php echo base_url('assets/image/berita/').$brt->image;?>" alt="">
 
           <hr>
 
