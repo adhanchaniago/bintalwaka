@@ -6,7 +6,10 @@ class M_berita extends CI_Model{
   //read all 
   function read()
   {
-      return $this->db->order_by('id_berita', 'DESC')->get('t_berita');
+    $this->db->select('t_berita.*,t_user.username');
+    $this->db->from('t_berita');
+    $this->db->join('t_user','t_user.id_user=t_berita.id_user','inner');
+    return $this->db->order_by('id_berita', 'DESC')->get();
   }
 
   function jumlah_berita()
@@ -17,7 +20,10 @@ class M_berita extends CI_Model{
   // read berdasarkan id
   function readBy($id)
   {
-    return $this->db->get_where('t_berita', array('id_berita' => $id));
+    $this->db->select('t_berita.*,t_user.username');
+    $this->db->from('t_berita');
+    $this->db->join('t_user','t_user.id_user=t_berita.id_user','inner');
+    return $this->db->where('id_berita', $id)->get();
   }
 
   //insert berita

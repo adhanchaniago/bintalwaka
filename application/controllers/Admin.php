@@ -19,6 +19,12 @@ class Admin extends CI_Controller {
 		$this->template->load('template/admin', 'content/a_berita_tambah');
 	}
 
+	public function berita_edit($id)
+	{
+		$data['berita'] = $this->m_berita->readBy($id)->result();
+		$this->template->load('template/admin', 'content/a_berita_edit',$data);
+	}
+
 	public function mahasiswa()
 	{
 		// $data['mahasiswa'] = $this->m_mahasiswa->read_gab()->result();

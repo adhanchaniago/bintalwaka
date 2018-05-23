@@ -21,7 +21,7 @@
               </div>
               <div class="card-footer text-muted">
                 Posted on <?= $b->tanggal; ?> by
-                <a href="#"><?= $b->id_user; ?></a>
+                <a href="#"><?= $b->username; ?></a>
               </div>
             </div>
           <?php } ?>

@@ -25,7 +25,7 @@
                 <td><?= $b->tanggal?></td>
                 <td><?= $b->id_user?></td>
                 <td class="text-center">
-                <button type="button" class="btn btn-primary btnedit" onclick="editberita(<?= $b->id_berita?>)">Edit</button>
+                <a class="btn btn-primary btnedit" href="<?php echo base_url('admin/berita_edit/').$b->id_berita;?>">Edit</a>
                 <button type="button" class="btn btn-danger btnhapus" onclick="hapusberita(<?= $b->id_berita?>)">Hapus</button>
                 </td>
             </tr>

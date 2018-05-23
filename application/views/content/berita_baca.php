@@ -14,7 +14,7 @@
           <!-- Author -->
           <p class="lead">
             by
-            <a href="#"><?php echo $brt->id_user; ?></a>
+            <a href="#"><?php echo $brt->username; ?></a>
           </p>
 
           <hr>
