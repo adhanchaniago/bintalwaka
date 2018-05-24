@@ -218,24 +218,6 @@
       });
     })
 
-    $('#cetak-id').submit(function (e) { 
-      e.preventDefault();
-      $.ajax({
-        url:'<?php echo base_url('c_cetak/read')?>',
-        type:'POST',
-        data: $(this).serialize(),
-        success: function( json ) {
-            var data = json.mhs[0];
-            console.log(data.nama_lengkap);
-          }
-      });
-    });
-
-    $('#cetak-sertifikat').click(function (e) { 
-      e.preventDefault();
-      alert("Cetak Sertifikat");
-    });
-    
   });
 
   function DateNow() { 

@@ -6,7 +6,7 @@
     <div class="card">
       <div class="card-header bg-secondary text-white"><i class="fa fa-fw fa-id-card"></i><strong> ID Card</strong></div>
       <div class="card-body">
-        <form action="" method="post" id="cetak-id">
+        <form action="<?php echo base_url('c_cetak/idcard')?>" target="blank" method="post" id="cetak-id">
           <div class="row">
             <div class="col-lg-9">
               <div class="form-group">
@@ -27,7 +27,7 @@
     <div class="card">
       <div class="card-header bg-secondary text-white"><i class="fa fa-fw fa-certificate"></i><strong> Sertifikat</strong></div>
       <div class="card-body">
-        <form action="" method="post" id="cetak-sertifikat">
+        <form action="<?php echo base_url('c_cetak/sertifikat')?>" target="blank" method="post" id="cetak-sertifikat">
           <div class="row">
             <div class="col-lg-9">
               <div class="form-group">
