@@ -61,18 +61,10 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cetak">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+          <a class="nav-link" href="<?php echo base_url('admin/cetak')?>">
             <i class="fa fa-fw fa-print"></i>
             <span class="nav-link-text">Cetak</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseComponents">
-            <li>
-              <a href="navbar.html"><i class="fa fa-fw fa-certificate"></i> Sertifikat</a>
-            </li>
-            <li>
-              <a href="cards.html"><i class="fa fa-fw fa-id-card"></i> ID Card</a>
-            </li>
-          </ul>
         </li>
       </ul>
       <ul class="navbar-nav sidenav-toggler">
@@ -225,6 +217,24 @@
         }
       });
     })
+
+    $('#cetak-id').submit(function (e) { 
+      e.preventDefault();
+      $.ajax({
+        url:'<?php echo base_url('c_cetak/read')?>',
+        type:'POST',
+        data: $(this).serialize(),
+        success: function( json ) {
+            var data = json.mhs[0];
+            console.log(data.nama_lengkap);
+          }
+      });
+    });
+
+    $('#cetak-sertifikat').click(function (e) { 
+      e.preventDefault();
+      alert("Cetak Sertifikat");
+    });
     
   });
 

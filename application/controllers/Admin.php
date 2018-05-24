@@ -59,6 +59,11 @@ class Admin extends CI_Controller {
 		$this->template->load('template/admin', 'content/a_user');
 	}
 
+	public function cetak()
+	{
+		$this->template->load('template/admin', 'content/a_cetak');
+	}
+
 	public function jsonformatter($error,$msg,$data)
 	{
 		$json['error'] = $error;
