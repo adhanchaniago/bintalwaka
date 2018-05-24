@@ -71,6 +71,56 @@ class C_cetak extends CI_Controller {
         $pdf->Output();
     }
 
+    public function idcard()
+    {
+        $pdf = new Cfpdf('P','mm',array(100,65));
+
+        $base = base_url('assets/image/');
+        $tahun = 2018;
+        $width = $pdf->getPageWidth();
+
+        $pdf->SetAutoPageBreak(false);
+        $pdf->setMargins(2,5);
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','B',12);
+        $pdf->Cell(0,4,'PESERTA','',1,'C');
+        $pdf->Ln(1);
+        $pdf->SetFont('Arial','',10);
+        $pdf->Cell(0,4,'BINTALWAKA '.$tahun,'',1,'C');
+        $pdf->Cell(0,4,'UKMK ST. IGNATIUS LOYOLA','',1,'C');
+        $pdf->SetFont('Arial','',8);
+        $pdf->Cell(0,4,'UNIVERSITAS MERDEKA MALANG','',1,'C');
+        
+        $pdf->Ln(3);
+        $img_length = 30;
+        $img_width = 40;
+        $y = $pdf->getY();
+        $x = ($width/2)-($img_length/2);
+        $pdf->Image($base.'mahasiswa/default_profile.jpg',$x,$y,$img_length,$img_width,'JPG');
+
+        $y2 = $y+$img_width;
+        $pdf->setY($y2);
+
+        $pdf->Ln(4);
+        
+        $pdf->SetFont('Arial','',8);
+        $pdf->Cell(17,5,'NAMA','',0);
+        $pdf->Cell(3,5,':','',0,'C');
+        $pdf->Cell(0,5,'{nama_panggilan}','',1);
+
+        $pdf->Cell(17,5,'KELOMPOK','',0);
+        $pdf->Cell(3,5,':','',0,'C');
+        $pdf->Cell(0,5,'{nama_kelompok}','',1);
+
+        $pdf->Ln(7);
+
+        $pdf->SetFont('Arial','',9);
+        $pdf->Cell(0,5,'{tempat}','',1,'C');
+        $pdf->Cell(0,5,'{tanggal}','',1,'C');
+
+        $pdf->Output();
+    }
+
     public function create()
     {
         $username = $this->input->post('user');
