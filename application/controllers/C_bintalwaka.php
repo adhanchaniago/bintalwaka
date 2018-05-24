@@ -23,12 +23,11 @@ class C_bintalwaka extends CI_Controller {
           foreach($fetch->result() as $r) {
 
                $data[] = array(
-                    $r->id_bintalwaka,
-                    $r->nama_kelompok,
-                    $r->tanggal,
                     $r->tahun,
+                    $r->tanggal,
                     $r->lokasi,
-                    "<button class=\"btn btn-primary btn-sm\" onclick=\"editbintalwaka(".$r->id_bintalwaka.")\">EDIT</button> <button class=\"btn btn-danger btn-sm\" onclick=\"hapusbintalwaka(".$r->id_bintalwaka.")\">DELETE</button>"
+                    $r->tema,
+                    "<button class=\"btn btn-primary btn-sm\" onclick=\"editbintalwaka(".$r->tahun.")\">EDIT</button> <button class=\"btn btn-danger btn-sm\" onclick=\"hapusbintalwaka(".$r->tahun.")\">DELETE</button>"
                );
           }
 
@@ -42,18 +41,23 @@ class C_bintalwaka extends CI_Controller {
           exit();
     }
 
+    public function readBy()
+    {
+        $tahun = $this->input->post('tahun');
+        $data = $this->m_bintalwaka->readBy($tahun);
+        $this->jsonformatter(false,'berhasil',$data->result(),200);
+    }
+
     public function create()
     {
-        $nim = $this->input->post('nim');
-        $kelompok = $this->input->post('kelompok');
+        $nim = $this->input->post('tahun');
         $tanggal = $this->input->post('tanggal');
-        $tahun = $this->input->post('tahun');
         $lokasi = $this->input->post('lokasi');
+        $tema = $this->input->post('tema');
 
-        $data = array('nim' => $nim,
-                       'id_kelompok' => $kelompok,
+        $data = array('tahun' => $nim,
                        'tanggal' => $tanggal,
-                       'tahun' => $tahun,
+                       'tema' => $tema,
                        'lokasi' => $lokasi);
         $this->m_bintalwaka->create($data);
         header("location: ".base_url('admin/bintalwaka'));
@@ -61,19 +65,17 @@ class C_bintalwaka extends CI_Controller {
 
     public function update()
     {
-        $id = $this->input->post('id');
-        $nim = $this->input->post('nim');
-        $kelompok = $this->input->post('kelompok');
+        $tahun = $this->input->post('tahun');
         $tanggal = $this->input->post('tanggal');
+        $tema = $this->input->post('tema');
         $tahun = $this->input->post('tahun');
         $lokasi = $this->input->post('lokasi');
 
-        $data = array('nim' => $nim,
-                       'id_kelompok' => $kelompok,
+        $data = array( 'tema' => $tema,
                        'tanggal' => $tanggal,
                        'tahun' => $tahun,
                        'lokasi' => $lokasi);
-        $this->m_bintalwaka->update($id,$data);
+        $this->m_bintalwaka->update($tahun,$data);
         header("location: ".base_url('admin/bintalwaka'));
     }
 

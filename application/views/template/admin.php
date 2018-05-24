@@ -351,7 +351,7 @@
                 text: 'Berhasil dihapus.',
               }).then((result) => {
                 if (result.value) {
-                  window.location.href = "<?php echo base_url('admin/mahasiswa');?>";
+                  window.location.href = "<?php echo base_url('admin/bintalwaka');?>";
                 }
               })
             } else {
@@ -435,6 +435,27 @@
     $('input[name=pass-edit]').val(password);
 
     $('#edit-user').modal('show');
+  }
+
+  function editbintalwaka(tahun) { 
+    $.ajax({
+        url:'<?php echo base_url('c_bintalwaka/readBy')?>',
+        type:'POST',
+        data: {tahun: tahun},
+        success: function( json ) {
+            var data = json.mhs[0];
+            var tahun = data.tahun;
+            var tanggal = data.tanggal;
+            var lokasi = data.lokasi;
+            var tema = data.tema;
+
+            $('input[name=tahun]').val(tahun);
+            $('input[name=tanggal]').val(tanggal);
+            $('input[name=lokasi]').val(lokasi);
+            $('input[name=tema]').val(tema);
+            $("#edit-bintalwaka").modal('show');
+          }
+      });
   }
 
 

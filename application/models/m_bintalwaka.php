@@ -6,22 +6,21 @@ class M_bintalwaka extends CI_Model{
   //read data dari tabel mahasiswa, jurusan, bintalwaka. 
   function read()
   {
-      $this->db->select('tb.*,tk.nama_kelompok');
+      $this->db->select('tb.*');
       $this->db->from('t_bintalwaka tb');
-      $this->db->join('t_kelompok tk','tk.id_kelompok=tb.id_kelompok','inner');
-      return $this->db->order_by('id_bintalwaka','ASC')->get();
+      return $this->db->order_by('tahun','ASC')->get();
   }
 
   // read berdasarkan id
-  function readBy($nim)
+  function readBy($tahun)
   {
-    return $this->db->get_where('t_bintalwaka', array('nim' => $nim));
+    return $this->db->get_where('t_bintalwaka', array('tahun' => $tahun));
   }
 
   //hapus data bintalwaka
   function delete($id)
   {
-    $where = array('id_bintalwaka' => $id);
+    $where = array('tahun' => $id);
     $this->db->where($where);
     $this->db->delete('t_bintalwaka');
     return $this->db->affected_rows();
@@ -30,13 +29,13 @@ class M_bintalwaka extends CI_Model{
   //insert data bintalwaka
   function create($data)
   {
-    $this->db->insert('t_bintalawaka',$data);
+    $this->db->insert('t_bintalwaka',$data);
   }
 
   //update berdasarkan id bintalwaka
-  function update($id,$data)
+  function update($tahun,$data)
   {
-    $where = array('id_bintalwaka' => $id);
+    $where = array('tahun' => $tahun);
     $this->db->where($where);
     $this->db->update('t_bintalwaka',$data);
   }
