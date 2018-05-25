@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('template','database','pagination','cfpdf');
+$autoload['libraries'] = array('session','template','database','pagination','cfpdf');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('m_berita','m_mahasiswa','m_bintalwaka','m_kelompok','m_user','m_cetak');
+$autoload['model'] = array('m_berita','m_mahasiswa','m_bintalwaka','m_kelompok','m_user','m_cetak','m_login');

@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+		// jika status != login > redirect login
+		if ($this->session->userdata('status') != 'login') {
+			redirect(base_url("login"));
+		}
+	}
+
 	public function index()
 	{
 		$this->template->load('template/admin', 'content/dashboard');

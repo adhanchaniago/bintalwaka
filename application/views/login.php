@@ -19,20 +19,21 @@
 <body class="bg-dark">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">Login</div>
+      <div class="card-header"><b>Login</b></div>
       <div class="card-body">
-        <form>
+        <form method="post" action="<?php echo base_url('login/aksi_login')?>">
           <div class="form-group">
             <label for="exampleInputEmail1">Username</label>
-            <input class="form-control" type="text" aria-describedby="emailHelp" placeholder="Username">
+            <input class="form-control" type="text" name="username" aria-describedby="emailHelp" placeholder="Username">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input class="form-control" type="password" placeholder="Password">
+            <input class="form-control" type="password" name="password" placeholder="Password">
           </div>
-          <a class="btn btn-primary btn-block" href="<?= base_url()?>admin">Login</a>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
       </div>
+      <div class="card-footer text-center"><a href="<?php echo base_url()?>">Back to home</a></div>
     </div>
   </div>
   <!-- Bootstrap core JavaScript-->
