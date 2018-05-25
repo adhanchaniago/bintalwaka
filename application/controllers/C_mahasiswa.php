@@ -141,6 +141,8 @@ class C_mahasiswa extends CI_Controller {
         $biaya = $this->input->post('biaya');
         $idcard = $this->input->post('idcard');
         $sertifikat = $this->input->post('sertifikat');
+        $tahun_bintalwaka = $this->input->post('tahun-bintalwaka');
+        $kelompok = $this->input->post('kelompok');
 
         $data = array( 'nama_lengkap' => $nl,
                        'nama_panggilan' => $np,
@@ -158,6 +160,8 @@ class C_mahasiswa extends CI_Controller {
                        'biaya' => $biaya,
                        'idcard' => $idcard,
                        'sertifikat' => $sertifikat,
+                       'tahun-bintalwaka' => $tahun_bintalwaka,
+                       'id_kelompok' => $kelompok,
                        'image' => $nim.".jpg"
                     );
         $this->m_mahasiswa->update($nim,$data);

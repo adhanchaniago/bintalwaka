@@ -218,6 +218,9 @@
       });
     })
 
+    $('#thn-bintalwaka').val($('#tahun-bintalwaka').val());
+    $('#klmpk').val($('#id-kelompok').val());
+
   });
 
   function DateNow() { 
@@ -439,6 +442,8 @@
           }
       });
   }
+
+
 
 
  </script>

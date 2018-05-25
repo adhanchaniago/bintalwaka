@@ -38,8 +38,29 @@
                 </div>
             </div>
           </div>
-            
-            
+          <hr>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <input type="hidden" id="tahun-bintalwaka" value="<?php echo $mhs->tahun_bintalwaka?>">
+                <select class="form-control" name="tahun-bintalwaka" id="thn-bintalwaka">
+                <?php foreach ($bintalwaka as $b) { ?>
+                  <option value="<?php echo $b->tahun ?>"><?php echo $b->tahun ?></option>
+                <?php }?>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <input type="hidden" id="id-kelompok" value="<?php echo $mhs->id_kelompok?>">
+                <select class="form-control" name="kelompok" id="klmpk">
+                <?php foreach ($kelompok as $kel) { ?>
+                  <option value="<?php echo $kel->id_kelompok ?>"><?php echo $kel->nama_kelompok ?></option>
+                <?php }?>
+                  </select>
+              </div>
+            </div>
+          </div>            
           <hr>
             <div class="row">
               <div class="col-lg-8">

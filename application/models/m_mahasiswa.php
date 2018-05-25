@@ -16,10 +16,11 @@ class M_mahasiswa extends CI_Model{
   function readBy($nim)
   {
     $date = "DATE_FORMAT(tm.tanggal_lahir, '%d %M %Y') AS tanggal";
-    $this->db->select('tm.*,'.$date.',tj.nama_jurusan AS jurusan,tf.nama_fakultas AS fakultas');
+    $this->db->select('tm.*,'.$date.',tj.nama_jurusan AS jurusan,tf.nama_fakultas AS fakultas,tk.nama_kelompok');
     $this->db->from('t_mahasiswa tm');
     $this->db->join('t_jurusan tj','tj.id_jurusan=tm.id_jurusan','inner');
     $this->db->join('t_fakultas tf','tf.id_fakultas=tj.id_fakultas','inner');
+    $this->db->join('t_kelompok tk','tk.id_kelompok=tm.id_kelompok','inner');
     $this->db->where('tm.nim',$nim);
     return $this->db->get();
   }
