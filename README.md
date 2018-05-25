@@ -1,4 +1,11 @@
-# Bintalwaka
-Sistem Informasi Bintalwaka UKMK
+# Sistem Informasi Bintalwaka UKMK
 
-Codeigniter 3
+**Base :**
+- Codeigniter 3
+- Bootstrap 5
+
+**Feature :**
+- Multi User
+- Cetak ID Card
+- Cetak Sertifikat
+and many more ...
