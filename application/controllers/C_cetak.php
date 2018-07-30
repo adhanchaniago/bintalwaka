@@ -19,18 +19,18 @@ class C_cetak extends CI_Controller {
         $pdf->AddPage();
         $width = $pdf->getPageWidth();
         $pdf->SetFont('Arial','',12);
-        $pdf->Cell(57,5,'PANITIA BINTALWAKA '.$tahun,0,1);
+        foreach ($mhs as $m ) {
+        $pdf->Cell(57,5,'PANITIA BINTALWAKA '.$m->tahun_bintalwaka,0,1);
         $pdf->Cell(70,5,'UKM KATOLIK ST. IGNATIUS LOYOLA',0,1);
         $pdf->Cell(70,5,'UNIVERSITAS MERDEKA MALANG',0,1);
         $pdf->Cell(70,8,'Jl. Terusan Dieng No.57 Malang',0,1);
         $pdf->Cell(70,2,'(Basement D3 Perbankan)',0,1);
         $pdf->setXY(($width-10)-20,8);
-        $pdf->Image($base.'logounmer.jpg',null,null,20,20,'JPG');
+        $pdf->Image($base.'logoukmk.jpg',null,null,20,20,'JPG');
         $pdf->setXY(($width-10)-45,8);
         $pdf->Image($base.'logounmer.jpg',null,null,20,20,'JPG');
         
         $pdf->Ln(17);
-        foreach ($mhs as $m ) {
             $pdf->SetFont('Arial','',20);
             $pdf->Cell(0,10,'SERTIFIKAT ',0,2,'C');
             $pdf->Cell(0,10,'DIBERIKAN KEPADA: ',0,1,'C');
@@ -94,12 +94,12 @@ class C_cetak extends CI_Controller {
         $pdf->Cell(0,4,'PESERTA','',1,'C');
         $pdf->Ln(1);
         $pdf->SetFont('Arial','',10);
-        $pdf->Cell(0,4,'BINTALWAKA '.$tahun,'',1,'C');
-        $pdf->Cell(0,4,'UKMK ST. IGNATIUS LOYOLA','',1,'C');
-        $pdf->SetFont('Arial','',8);
-        $pdf->Cell(0,4,'UNIVERSITAS MERDEKA MALANG','',1,'C');
-        
         foreach ($mhs as $m) {
+            $pdf->Cell(0,4,'BINTALWAKA '.$m->tahun_bintalwaka,'',1,'C');
+            $pdf->Cell(0,4,'UKMK ST. IGNATIUS LOYOLA','',1,'C');
+            $pdf->SetFont('Arial','',8);
+            $pdf->Cell(0,4,'UNIVERSITAS MERDEKA MALANG','',1,'C');
+        
             $pdf->Ln(3);
             $img_length = 30;
             $img_width = 40;

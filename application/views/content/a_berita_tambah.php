@@ -25,7 +25,7 @@
                     <label class="custom-file-label" for="inputGroupFile01">Pilih Gambar</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success">Simpan</button>
+            <button type="submit" color="red" class="btn btn-success">Simpan</button>
             <a href="<?= base_url('admin/berita') ?>" class="btn btn-primary">Batal</a>
         </form>
     </div>

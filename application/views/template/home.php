@@ -161,7 +161,7 @@
                 swal({
                   type: 'success',
                   title: 'Selamat!',
-                  text: 'Kamu berhasil mendaftar.',
+                  text: 'Kamu berhasil mendaftar. Silahkan menyelesaikan administrasi pembayaran di Sekretariat UKMK.',
                 }).then((result) => {
                   if (result.value) {
                     window.location.href = "<?php echo base_url('pendaftaran');?>";
@@ -170,8 +170,8 @@
               } else {
                 swal({
                   type: 'error',
-                  title: 'Oops!',
-                  text: 'Kamu tidak bisa mendaftar.',
+                  title: 'Gagal Mendaftar!',
+                  text: 'Ukuran foto salah atau terlalu besar',
                 })
               }
             }

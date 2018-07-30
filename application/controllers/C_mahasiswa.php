@@ -59,6 +59,8 @@ class C_mahasiswa extends CI_Controller {
     //insert mahasiswa ke database
     public function create()
     {
+        $tahun_bintalwaka = $this->input->post('tahun-bintalwaka');
+        $id_kelompok = $this->input->post('id-kelompok');
         $nim = $this->input->post('nim');
         $nl = $this->input->post('nl');
         $np = $this->input->post('np');
@@ -74,7 +76,9 @@ class C_mahasiswa extends CI_Controller {
         $prestasi = $this->input->post('prestasi');
         $motivasi = $this->input->post('motivasi');
 
-        $data = array('nim' => $nim,
+        $data = array('tahun_bintalwaka' => $tahun_bintalwaka,
+                       'id_kelompok' => $id_kelompok,
+                       'nim' => $nim,
                        'nama_lengkap' => $nl,
                        'nama_panggilan' => $np,
                        'jenis_kelamin' => $jk,
@@ -105,10 +109,10 @@ class C_mahasiswa extends CI_Controller {
     {
         $config['file_name']            = $this->input->post('nim');
         $config['upload_path']          = './assets/image/mahasiswa/';
-        $config['allowed_types']        = 'jpg|png';
+        $config['allowed_types']        = 'jpg';
         $config['max_size']             = 2048;
         $config['max_width']            = 400;
-        $config['max_height']           = 400;
+        $config['max_height']           = 600;
 
         $this->load->library('upload', $config);
 
@@ -160,7 +164,7 @@ class C_mahasiswa extends CI_Controller {
                        'biaya' => $biaya,
                        'idcard' => $idcard,
                        'sertifikat' => $sertifikat,
-                       'tahun-bintalwaka' => $tahun_bintalwaka,
+                       'tahun_bintalwaka' => $tahun_bintalwaka,
                        'id_kelompok' => $kelompok,
                        'image' => $nim.".jpg"
                     );
