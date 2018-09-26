@@ -10,6 +10,8 @@ class Pendaftaran extends CI_Controller {
 
 	public function daftar()
 	{
+		$data['nim'] = $this->input->post('daftar-nim');
+		// $data['nim'] = '123131231';
 		$data['fakultas'] = $this->m_mahasiswa->read_fak()->result();
 		// $data['jurusan'] = $this->m_mahasiswa->read_jur()->result();
 		$this->template->load('template/home', 'content/form',$data);

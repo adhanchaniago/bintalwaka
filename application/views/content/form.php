@@ -15,7 +15,7 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                         <label>Nomor Induk Mahasiswa (NIM)</label>
-                        <input type="text" name="nim" class="form-control">
+                        <input type="text" name="nim" class="form-control" value="<?php echo $nim;?>" readonly>
                         <input type="hidden" name="tahun-bintalwaka" value=<?php echo date("Y")?>>
                         <input type="hidden" name="id-kelompok" value="1">
                     </div>

@@ -91,7 +91,6 @@
         $("#cek-nim").submit(function (e) { 
           $("#hasil-ada").hide();
           $("#hasil-kosong").hide();
-
           e.preventDefault();
           $.ajax({
               type : "POST",
@@ -110,11 +109,15 @@
                   })
                 } else if (response.message == 'kosong') {
                   swal({
+                    title: 'Oops..',
+                    text: "Kamu belum terdaftar",
                     type: 'error',
-                    title: 'Oops!',
-                    html: 'Kamu belum terdaftar',
-                    footer: '<a href="<?= base_url("pendaftaran/daftar")?>">Daftar sekarang!</a>',
-                    showConfirmButton: false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Daftar Sekarang!'
+                  }).then((result) => {
+                    if (result.value) {
+                      $("#daftar-nim").submit();
+                    }
                   })
                 }
               },
@@ -177,7 +180,11 @@
             }
           });
         });
-      
+
+        $("input[name='nim']").change(function (e) { 
+          e.preventDefault();
+          $("input[name='daftar-nim']").val($("input[name='nim']").val());
+        });
       });
       
       
