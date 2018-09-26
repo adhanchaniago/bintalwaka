@@ -36,8 +36,10 @@ class Admin extends CI_Controller {
 
 	public function mahasiswa()
 	{
+		$data['tahun'] = $this->m_bintalwaka->readtahun()->result();		
+		$data['fakultas'] = $this->m_bintalwaka->readfakultas()->result();	
 		// $data['mahasiswa'] = $this->m_mahasiswa->read_gab()->result();
-		$this->template->load('template/admin', 'content/a_mahasiswa');
+		$this->template->load('template/admin', 'content/a_mahasiswa',$data);
 	}
 
 	public function mahasiswa_edit($nim)
