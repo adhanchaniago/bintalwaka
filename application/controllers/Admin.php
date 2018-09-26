@@ -14,7 +14,12 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		$this->template->load('template/admin', 'content/dashboard');
+		$tahun = date('Y');
+		$data['jml_pendaftar'] = $this->m_mahasiswa->count_pendaftar($tahun);
+		$data['jml_allpendaftar'] = $this->m_mahasiswa->count_allpendaftar();
+		$data['jml_lunas'] = $this->m_mahasiswa->count_lunas($tahun);
+		$data['jml_belumlunas'] = $this->m_mahasiswa->count_belumlunas($tahun);
+		$this->template->load('template/admin', 'content/dashboard',$data);
 	}
 
 	public function berita()

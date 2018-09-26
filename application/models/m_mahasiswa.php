@@ -60,6 +60,43 @@ class M_mahasiswa extends CI_Model{
     $this->db->update('t_mahasiswa',$data);
   }
 
+  //Count Pendaftar ditahun ini
+  function count_pendaftar($tahun)
+  {
+    $this->db->select('nim');
+    $this->db->from('t_mahasiswa');
+    $this->db->where('tahun_bintalwaka', $tahun);
+    return $this->db->count_all_results();
+  }
+
+  //Count Pendaftar keseluruhan
+  function count_allpendaftar()
+  {
+    $this->db->select('nim');
+    $this->db->from('t_mahasiswa');
+    return $this->db->count_all_results();
+  }
+
+  //Count Pendaftar ditahun ini
+  function count_lunas($tahun)
+  {
+    $this->db->select('nim');
+    $this->db->from('t_mahasiswa');
+    $this->db->where('tahun_bintalwaka', $tahun);
+    $this->db->where('biaya', 'lunas');
+    return $this->db->count_all_results();
+  }
+
+  //Count Pendaftar ditahun ini
+  function count_belumlunas($tahun)
+  {
+    $this->db->select('nim');
+    $this->db->from('t_mahasiswa');
+    $this->db->where('tahun_bintalwaka', $tahun);
+    $this->db->where('biaya', 'belum');
+    return $this->db->count_all_results();
+  }
+
 }
 
 ?>
