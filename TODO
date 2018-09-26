@@ -1,0 +1,31 @@
+
+Fixme:
+  ☐ Fix Frontpage/Admin Footer
+  ☐ Readonly Input Box NIM di Pendaftaran
+  ☐ Alert muncul jika cetak sertifikat/idcard mhs yg belum lunas
+  ☐ Alert muncul jika cetak sertifikat/idcard mhs yg sudah pernah cetak
+
+TODO:
+  Cetak:
+  ☐ Absensi berdasarkan tahun bintalwaka
+  ☐ Absensi berdasarkan kelompok
+  ☐ Absensi berdasarkan fakultas
+  ☐ ID card berdasarkan NIM (individu)
+  ☐ ID card berdasarkan tahun bintalwaka
+  ☐ ID card berdasarkan Kelompok
+  ☐ ID card berdasarkan Fakultas
+  ☐ Sertifikat berdasarkan NIM (individu)
+  ☐ Sertifikat berdasarkan tahun bintalwaka
+  ☐ Sertifikat berdasarkan Kelompok
+  ☐ Sertifikat berdasarkan Fakultas
+  Admin Dashboard:
+  ☐ Cards jumlah mahasiswa yang mendaftar di tahun ini
+  ☐ Cards jumlah mahasiswa yang mendaftar keseluruhan
+  ☐ Cards jumlah mahasiswa yang lunas
+  ☐ Cards jumlah mahasiswa yang belum lunas
+  Admin Mahasiswa:
+  ☐ Filter Tahun bintalwaka
+  ☐ Filter Fakultas
+
+
+
