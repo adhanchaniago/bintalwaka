@@ -72,7 +72,10 @@ class Admin extends CI_Controller {
 
 	public function cetak()
 	{
-		$this->template->load('template/admin', 'content/a_cetak');
+		$data['tahun'] = $this->m_bintalwaka->readtahun()->result();		
+		$data['kelompok'] = $this->m_bintalwaka->readkelompok()->result();		
+		$data['fakultas'] = $this->m_bintalwaka->readfakultas()->result();		
+		$this->template->load('template/admin', 'content/a_cetak',$data);
 	}
 
 	public function jsonformatter($error,$msg,$data)

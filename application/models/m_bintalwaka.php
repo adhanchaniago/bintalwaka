@@ -1,7 +1,5 @@
 <?php
-/**
- * Model CRUD User Management
- */
+
 class M_bintalwaka extends CI_Model{
   //read data dari tabel mahasiswa, jurusan, bintalwaka. 
   function read()
@@ -15,6 +13,26 @@ class M_bintalwaka extends CI_Model{
   function readBy($tahun)
   {
     return $this->db->get_where('t_bintalwaka', array('tahun' => $tahun));
+  }
+
+  // read data tahun
+  function readtahun()
+  {
+    $this->db->select('tahun');
+    $this->db->from('t_bintalwaka');
+    return $this->db->get();
+  }
+
+  // read data kelompok
+  function readkelompok()
+  {
+    return $this->db->get('t_kelompok');
+  }
+
+  // read data fakultas
+  function readfakultas()
+  {
+    return $this->db->get('t_fakultas');
   }
 
   //hapus data bintalwaka
@@ -39,6 +57,8 @@ class M_bintalwaka extends CI_Model{
     $this->db->where($where);
     $this->db->update('t_bintalwaka',$data);
   }
+
+
 
 }
 
