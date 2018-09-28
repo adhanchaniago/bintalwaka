@@ -25,6 +25,19 @@ class M_mahasiswa extends CI_Model{
     return $this->db->get();
   }
 
+  //read by tahun bintalwaka dan fakultas
+  function readBy2($tahun,$fak="")
+  {
+    $this->db->select('t_mahasiswa.nim,t_mahasiswa.nama_lengkap,t_jurusan.nama_jurusan,t_mahasiswa.no_HP,t_mahasiswa.biaya,t_mahasiswa.sertifikat');
+    $this->db->from('t_mahasiswa');
+    $this->db->join('t_jurusan', 't_jurusan.id_jurusan = t_mahasiswa.id_jurusan', 'inner');
+    $this->db->where('t_mahasiswa.tahun_bintalwaka', $tahun);
+    if ($fak != "") {
+      $this->db->where('t_jurusan.id_fakultas', $fak);
+    }
+    return $this->db->get();
+  }
+  
   // read data fakultas
   public function read_fak()
   {

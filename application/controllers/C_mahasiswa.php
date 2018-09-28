@@ -56,6 +56,13 @@ class C_mahasiswa extends CI_Controller {
         }        
     }
 
+    //read by tahun bintalwaka dan fakultas
+    public function read4($tahun,$fak="")
+    {
+        $data = $this->m_mahasiswa->readBy2($tahun,$fak)->result();
+        $this->jsonformatter(false,'berhasil',$data);
+    }
+
     //insert mahasiswa ke database
     public function create()
     {

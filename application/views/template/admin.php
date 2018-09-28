@@ -142,24 +142,60 @@
     <script src="<?= base_url('assets')?>/js/sb-admin-datatables.min.js"></script>
     <script src="<?= base_url('assets')?>/js/sb-admin-charts.min.js"></script>
     <script src="<?= base_url('assets')?>/js/sweetalert2.all.js"></script>
+    <!-- Loading Overlay -->
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.6/dist/loadingoverlay.min.js"></script>
+
+    
   </div>
 </body>
 <script>
   $(document).ready(function () {
-    $('input[name=tgl]').val(DateNow());
-    $('#tabel-mahasiswa').DataTable({
-			  "pageLength" : 10,
-        "ajax": {
-            url : "<?php echo base_url("c_mahasiswa/read2") ?>",
-            type : 'GET'
+    var tahun = $("#pilih-thn-bwk option:selected").val();
+    var fak = $("#pilih-fak option:selected").val();
+    $.ajax({
+        type : "POST",
+        url : "<?php echo base_url('c_mahasiswa/read4/');?>" + tahun + "/" + fak,
+        cache : false,
+        beforeSend: function(){
+            $.LoadingOverlay("show");
         },
-        'columnDefs': [
-          {
-            "targets": "_all", // your case first column
-            "className": "text-center"
-          }
-        ]
-		});
+        complete: function(){
+            $.LoadingOverlay("hide");
+        },
+        success : function(response){
+            console.log(response)
+            table = $('#tabel-mahasiswa').DataTable();
+            table.destroy();
+            table = $('#tabel-mahasiswa').DataTable({
+                columnDefs: [
+                    { class: "text-center", targets: "_all" },
+                    { width: "20%", targets: 6 },
+                ]
+            });
+            populateTabelMahasiswa(response);  
+        },
+        error : function(){
+            swal({
+                type: 'error',
+                title: 'Oopps!',
+                text: 'Terjadi Kesalahan.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            console.log('error')
+        }
+    });
+
+    $('input[name=tgl]').val(DateNow());
+    $("#pilih-thn-bwk").change(function (e) { 
+      e.preventDefault();
+      filterMhs();
+    });
+    $("#pilih-fak").change(function (e) { 
+      e.preventDefault();
+      filterMhs();
+    });
+    $('#tabel-mahasiswa').DataTable();
     $('#tabel-bintalwaka').DataTable({
 			  "pageLength" : 10,
         "ajax": {
@@ -222,6 +258,8 @@
     $('#klmpk').val($('#id-kelompok').val());
 
   });
+
+
 
   function DateNow() { 
     var today = new Date();
@@ -441,6 +479,66 @@
             $("#edit-bintalwaka").modal('show');
           }
       });
+  }
+
+  //Memunculkan data Mahasiswa ke dalam Datatables
+  function populateTabelMahasiswa(json) {
+    // clear the table before populating it with more data
+    $("#tabel-mahasiswa").DataTable().clear();
+    var length = Object.keys(json.mhs).length;
+    for(var i = 0; i < length; i++) {
+      var mhs = json.mhs[i];
+
+      // You could also use an ajax property on the data table initialization
+      $('#tabel-mahasiswa').dataTable().fnAddData( [
+          mhs.nim,
+          mhs.nama_lengkap,
+          mhs.nama_jurusan,
+          mhs.no_HP,
+          mhs.biaya,
+          mhs.sertifikat,
+          "<button class='btn btn-primary' onclick=editPaket(\"" + mhs.nim + "\")>EDIT</button> <button class='btn btn-danger' onclick=deletePaket(\"" + mhs.nim + "\")>DELETE</button>"
+      ]);
+    }        
+  }
+
+  //Filter mahasiswa
+  function filterMhs() {  
+    var tahun = $("#pilih-thn-bwk option:selected").val();
+    var fak = $("#pilih-fak option:selected").val();
+    $.ajax({
+      type : "POST",
+      url : "<?php echo base_url('c_mahasiswa/read4/');?>" + tahun + "/" + fak,
+      cache : false,
+      beforeSend: function(){
+          $.LoadingOverlay("show");
+      },
+      complete: function(){
+          $.LoadingOverlay("hide");
+      },
+      success : function(response){
+          console.log(response)
+          table = $('#tabel-mahasiswa').DataTable();
+          table.destroy();
+          table = $('#tabel-mahasiswa').DataTable({
+              columnDefs: [
+                  { class: "text-center", targets: "_all" },
+                  { width: "20%", targets: 6 },
+              ]
+          });
+          populateTabelMahasiswa(response);  
+      },
+      error : function(){
+          swal({
+              type: 'error',
+              title: 'Oopps!',
+              text: 'Terjadi Kesalahan.',
+              showConfirmButton: false,
+              timer: 1500
+          });
+          console.log('error')
+      }
+    });
   }
 
 

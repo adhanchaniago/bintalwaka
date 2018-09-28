@@ -3,8 +3,7 @@
         <div class="col-lg-12 ">
             <div class="form-group">
                 <label>Tahun Bintalwaka :</label>
-                <select class="form-control">
-                    <option value="">- Semua -</option>
+                <select id="pilih-thn-bwk" class="form-control">
                     <?php foreach ($tahun as $thn) { ?>
                         <option value="<?php echo $thn->tahun; ?>"><?php echo $thn->tahun; ?></option>
                     <?php } ?>
@@ -14,7 +13,7 @@
         <div class="col-lg-12">
             <div class="form-group">
                 <label>Fakultas :</label>
-                <select class="form-control">
+                <select id="pilih-fak" class="form-control">
                     <option value="">- Semua -</option>
                     <?php foreach ($fakultas as $fak) { ?>
                         <option value="<?php echo $fak->id_fakultas; ?>"><?php echo $fak->nama_fakultas; ?></option>

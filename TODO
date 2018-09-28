@@ -1,7 +1,7 @@
 
 Fixme:
   ☐ Fix Frontpage/Admin Footer
-  ☐ Readonly Input Box NIM di Pendaftaran
+  ✔ Readonly Input Box NIM di Pendaftaran @done(18-09-26 12:21)
   ☐ Alert muncul jika cetak sertifikat/idcard mhs yg belum lunas
   ☐ Alert muncul jika cetak sertifikat/idcard mhs yg sudah pernah cetak
 
@@ -24,8 +24,8 @@ TODO:
   ☐ Cards jumlah mahasiswa yang lunas
   ☐ Cards jumlah mahasiswa yang belum lunas
   Admin Mahasiswa:
-  ☐ Filter Tahun bintalwaka
-  ☐ Filter Fakultas
+  ✔ Filter Tahun bintalwaka @done(18-09-28 13:30)
+  ✔ Filter Fakultas @done(18-09-28 13:30)
 
 
 
