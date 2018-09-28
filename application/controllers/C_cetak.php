@@ -132,40 +132,28 @@ class C_cetak extends CI_Controller {
 
     }
 
-    public function create()
+    public function absensi($filter)
     {
-        $username = $this->input->post('user');
-        $pass = $this->input->post('pass');
-
-        $data = array('username' => $username,
-                       'password' => $pass);
-        $this->m_user->create($data);
-        header("location: ".base_url('admin/user'));
-    }
-
-    public function update()
-    {
-        $id = $this->input->post('id-user-edit');
-        $username = $this->input->post('user-edit');
-        $pass = $this->input->post('pass-edit');
-
-        $data = array('username' => $username,
-                        'password' => $pass);
-        $this->m_user->update($id,$data);
-        header("location: ".base_url('admin/user'));
-    }
-
-    public function delete()
-    {   
-        $id = $this->input->post('id');
-        
-        $del = $this->m_user->delete($id);
-        if ($del > 0) {
-            $this->jsonformatter(false,'sukses','');
-        } else {
-            $this->jsonformatter(false,'gagal','');
+        $tahun = $this->input->post('tahun');
+        switch ($filter) {
+            case 'kelompok':
+                $kelompok = $this->input->post('kelompok');
+                $data = $this->m_cetak->absensi($filter,$tahun,$kelompok);
+                $this->jsonformatter(false,'berhasil',$data->result());
+                break;
+            case 'fakultas':
+                $fakultas = $this->input->post('fakultas');
+                $data = $this->m_cetak->absensi($filter,$tahun,$fakultas);
+                $this->jsonformatter(false,'berhasil',$data->result());
+                break;
+            case 'semua':
+                $data = $this->m_cetak->absensi($filter,$tahun);
+                $this->jsonformatter(false,'berhasil',$data->result());
+                break;
+            default:
+                # code...
+                break;
         }
-        // header("location: ".base_url('admin/user'));
     }
 
     //JSON Formatter

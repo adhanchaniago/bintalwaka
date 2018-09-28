@@ -14,29 +14,45 @@ class M_cetak extends CI_Model{
      return $this->db->where('nim', $nim)->get();
   }
 
-  // read berdasarkan id
-  function readBy($id)
+  public function absensi($filter,$tahun,$param="")
   {
-    
+    if ($filter == "kelompok") {
+      $this->db->select('t_mahasiswa.tahun_bintalwaka, t_mahasiswa.nim, t_mahasiswa.nama_lengkap, t_jurusan.nama_jurusan, t_mahasiswa.no_hp, t_kelompok.nama_kelompok');
+      $this->db->from('t_mahasiswa');
+      $this->db->join('t_kelompok', 't_mahasiswa.id_kelompok = t_kelompok.id_kelompok', 'inner');
+      $this->db->join('t_jurusan', 't_mahasiswa.id_jurusan = t_jurusan.id_jurusan', 'inner');
+      $this->db->where('t_mahasiswa.tahun_bintalwaka', $tahun);
+      $this->db->where('t_kelompok.id_kelompok', $param);
+      return $this->db->get();
+    } elseif ($filter == "fakultas") {
+      $this->db->select('t_mahasiswa.tahun_bintalwaka, t_mahasiswa.nim, t_mahasiswa.nama_lengkap, t_jurusan.nama_jurusan, t_mahasiswa.no_hp, t_kelompok.nama_kelompok, t_fakultas.nama_fakultas');
+      $this->db->from('t_mahasiswa');
+      $this->db->join('t_kelompok', 't_mahasiswa.id_kelompok = t_kelompok.id_kelompok', 'inner');
+      $this->db->join('t_jurusan', 't_mahasiswa.id_jurusan = t_jurusan.id_jurusan', 'inner');
+      $this->db->join('t_fakultas', 't_jurusan.id_fakultas = t_fakultas.id_fakultas', 'inner');
+      $this->db->where('t_mahasiswa.tahun_bintalwaka', $tahun);
+      $this->db->where('t_fakultas.id_fakultas', $param);
+      return $this->db->get();
+    } elseif ($filter == "semua") {
+      $this->db->select('t_mahasiswa.tahun_bintalwaka, t_mahasiswa.nim, t_mahasiswa.nama_lengkap, t_jurusan.nama_jurusan, t_mahasiswa.no_hp, t_kelompok.nama_kelompok');
+      $this->db->from('t_mahasiswa');
+      $this->db->join('t_kelompok', 't_mahasiswa.id_kelompok = t_kelompok.id_kelompok', 'inner');
+      $this->db->join('t_jurusan', 't_mahasiswa.id_jurusan = t_jurusan.id_jurusan', 'inner');
+      $this->db->where('t_mahasiswa.tahun_bintalwaka', $tahun);
+      return $this->db->get();
+    }
   }
 
-  //delete 
-  function delete($id)
+  public function idcard($filter,$tahun,$param="")
   {
-    
+    # code...
   }
 
-  //create
-  function create($data)
+  public function sertifikat($filter,$tahun,$param="")
   {
-
+    # code...
   }
 
-  //Edit
-  function update($id,$data)
-  {
-    
-  }
 
 }
 
