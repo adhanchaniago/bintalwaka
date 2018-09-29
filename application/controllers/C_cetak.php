@@ -81,10 +81,159 @@ class C_cetak extends CI_Controller {
         $nim = $this->input->post('nim');
         $mhs = $this->m_cetak->read($nim)->result();
 
+    }
+
+    public function absensi($filter)
+    {
+        $tahun = $this->input->post('tahun');
+        switch ($filter) {
+            case 'kelompok':
+                $kelompok = $this->input->post('kelompok');
+                $data = $this->m_cetak->absensi($filter,$tahun,$kelompok)->result();
+                $nm_kelompok = $this->m_cetak->absensi($filter,$tahun,$kelompok)->row()->nama_kelompok;
+                $this->cetak_absensi($tahun,array($filter,$nm_kelompok),$data);
+                break;
+            case 'fakultas':
+                $fakultas = $this->input->post('fakultas');
+                $data = $this->m_cetak->absensi($filter,$tahun,$fakultas)->result();
+                $nm_fakultas = $this->m_cetak->absensi($filter,$tahun,$fakultas)->row()->nama_fakultas;
+                $this->cetak_absensi($tahun,array($filter,$nm_fakultas),$data);
+                break;
+            case 'semua':
+                $data = $this->m_cetak->absensi($filter,$tahun,'')->result();
+                $this->cetak_absensi($tahun,array($filter),$data);
+                break;
+            default:
+                # code...
+                break;
+        }
+    }
+
+    public function cetak_absensi($tahun,$filter,$data)
+    {
+        //judul halaman
+        $pdf = new Cfpdf('L','mm','A4');
+        $pdf->AddPage();
+        $pdf->SetAutoPageBreak(true,1);
+        $pdf->SetFont('Arial','B',12);
+        $pdf->Cell(0,5,'ABSENSI PERSERTA BINTALWAKA',0,1,'C');
+        $pdf->Cell(0,5,'UKM KATOLIK ST. IGNATIUS LOYOLA',0,1,'C');
+        $pdf->Cell(0,5,'TAHUN '.$tahun,0,1,'C');
+        $pdf->Ln(10);
+
+        $pdf->SetFont('Arial','',12);
+        if ($filter[0] == "kelompok") {
+            $pdf->Cell(0,10,"Kelompok : ".$filter[1],0,1);
+            //header tabel
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(13,7,'No.',1,0,'C');
+            $pdf->Cell(45,7,'NIM',1,0,'C');
+            $pdf->Cell(60,7,'NAMA',1,0,'C');
+            $pdf->Cell(60,7,'JURUSAN',1,0,'C');
+            $pdf->Cell(50,7,'NO. HP',1,0,'C');
+            $pdf->Cell(0,7,'TTD',1,1,'C');
+            
+            //body tabel
+            $pdf->SetFont('Arial','',12);
+            $a = 1;
+            foreach ($data as $d) {
+                $pdf->Cell(13,10,$a,1,0,'C');
+                $pdf->Cell(45,10,$d->nim,1,0,'C');
+                $pdf->Cell(60,10,$d->nama_lengkap,1,0,'C');
+                $pdf->Cell(60,10,$d->nama_jurusan,1,0,'C');
+                $pdf->Cell(50,10,$d->no_hp,1,0,'C');
+                $pdf->Cell(0,10,'',1,1,'C');
+                $a++;
+            }
+        } elseif ($filter[0] == "fakultas") {
+            $pdf->Cell(0,10,"Fakultas : ".$filter[1],0,1);
+            //header tabel
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(13,7,'No.',1,0,'C');
+            $pdf->Cell(35,7,'NIM',1,0,'C');
+            $pdf->Cell(60,7,'NAMA',1,0,'C');
+            $pdf->Cell(60,7,'JURUSAN',1,0,'C');
+            $pdf->Cell(40,7,'KELOMPOK',1,0,'C');
+            $pdf->Cell(35,7,'NO. HP',1,0,'C');
+            $pdf->Cell(0,7,'TTD',1,1,'C');
+
+            //body tabel
+            $pdf->SetFont('Arial','',12);
+            $a = 1;
+            foreach ($data as $d) {
+                $pdf->Cell(13,10,$a,1,0,'C');
+                $pdf->Cell(35,10,$d->nim,1,0,'C');
+                $pdf->Cell(60,10,$d->nama_lengkap,1,0,'C');
+                $pdf->Cell(60,10,$d->nama_jurusan,1,0,'C');
+                $pdf->Cell(40,10,$d->nama_kelompok,1,0,'C');
+                $pdf->Cell(35,10,$d->no_hp,1,0,'C');
+                $pdf->Cell(0,10,'',1,1,'C');
+                $a++;
+            }
+
+        } elseif ($filter[0] == "fakultas") {
+            $pdf->Cell(0,10,"Fakultas : ".$filter[1],0,1);
+            //header tabel
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(13,7,'No.',1,0,'C');
+            $pdf->Cell(35,7,'NIM',1,0,'C');
+            $pdf->Cell(60,7,'NAMA',1,0,'C');
+            $pdf->Cell(60,7,'JURUSAN',1,0,'C');
+            $pdf->Cell(40,7,'KELOMPOK',1,0,'C');
+            $pdf->Cell(35,7,'NO. HP',1,0,'C');
+            $pdf->Cell(0,7,'TTD',1,1,'C');
+
+            //body tabel
+            $pdf->SetFont('Arial','',12);
+            $a = 1;
+            foreach ($data as $d) {
+                $pdf->Cell(13,10,$a,1,0,'C');
+                $pdf->Cell(35,10,$d->nim,1,0,'C');
+                $pdf->Cell(60,10,$d->nama_lengkap,1,0,'C');
+                $pdf->Cell(60,10,$d->nama_jurusan,1,0,'C');
+                $pdf->Cell(40,10,$d->nama_kelompok,1,0,'C');
+                $pdf->Cell(35,10,$d->no_hp,1,0,'C');
+                $pdf->Cell(0,10,'',1,1,'C');
+                $a++;
+            }
+
+        } elseif ($filter[0] == "semua") {
+            //header tabel
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(13,7,'No.',1,0,'C');
+            $pdf->Cell(35,7,'NIM',1,0,'C');
+            $pdf->Cell(60,7,'NAMA',1,0,'C');
+            $pdf->Cell(60,7,'JURUSAN',1,0,'C');
+            $pdf->Cell(40,7,'KELOMPOK',1,0,'C');
+            $pdf->Cell(35,7,'NO. HP',1,0,'C');
+            $pdf->Cell(0,7,'TTD',1,1,'C');
+
+            //body tabel
+            $pdf->SetFont('Arial','',12);
+            $a = 1;
+            foreach ($data as $d) {
+                $pdf->Cell(13,10,$a,1,0,'C');
+                $pdf->Cell(35,10,$d->nim,1,0,'C');
+                $pdf->Cell(60,10,$d->nama_lengkap,1,0,'C');
+                $pdf->Cell(60,10,$d->nama_jurusan,1,0,'C');
+                $pdf->Cell(40,10,$d->nama_kelompok,1,0,'C');
+                $pdf->Cell(35,10,$d->no_hp,1,0,'C');
+                $pdf->Cell(0,10,'',1,1,'C');
+                $a++;
+            }
+
+        }
+
+
+
+        $pdf->Output();  
+    }
+
+    public function cetak_idcard($mhs)
+    {
         $pdf = new Cfpdf('P','mm',array(100,65));
 
         $base = base_url('assets/image/');
-        $tahun = 2018;
         $width = $pdf->getPageWidth();
 
         $pdf->SetAutoPageBreak(false);
@@ -127,32 +276,6 @@ class C_cetak extends CI_Controller {
             $pdf->Cell(0,5,$m->lokasi,'',1,'C');
             $pdf->Cell(0,5,$m->tanggalbintalwaka,'',1,'C');
             $pdf->Output('I',$m->nim.'_idcard.pdf');
-        }
-        
-
-    }
-
-    public function absensi($filter)
-    {
-        $tahun = $this->input->post('tahun');
-        switch ($filter) {
-            case 'kelompok':
-                $kelompok = $this->input->post('kelompok');
-                $data = $this->m_cetak->absensi($filter,$tahun,$kelompok);
-                $this->jsonformatter(false,'berhasil',$data->result());
-                break;
-            case 'fakultas':
-                $fakultas = $this->input->post('fakultas');
-                $data = $this->m_cetak->absensi($filter,$tahun,$fakultas);
-                $this->jsonformatter(false,'berhasil',$data->result());
-                break;
-            case 'semua':
-                $data = $this->m_cetak->absensi($filter,$tahun);
-                $this->jsonformatter(false,'berhasil',$data->result());
-                break;
-            default:
-                # code...
-                break;
         }
     }
 

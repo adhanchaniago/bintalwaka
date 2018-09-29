@@ -34,11 +34,12 @@ class M_cetak extends CI_Model{
       $this->db->where('t_fakultas.id_fakultas', $param);
       return $this->db->get();
     } elseif ($filter == "semua") {
-      $this->db->select('t_mahasiswa.tahun_bintalwaka, t_mahasiswa.nim, t_mahasiswa.nama_lengkap, t_jurusan.nama_jurusan, t_mahasiswa.no_hp, t_kelompok.nama_kelompok');
+      $this->db->select('t_mahasiswa.nim, t_mahasiswa.nama_lengkap, t_jurusan.nama_jurusan, t_mahasiswa.no_hp, t_kelompok.nama_kelompok');
       $this->db->from('t_mahasiswa');
       $this->db->join('t_kelompok', 't_mahasiswa.id_kelompok = t_kelompok.id_kelompok', 'inner');
       $this->db->join('t_jurusan', 't_mahasiswa.id_jurusan = t_jurusan.id_jurusan', 'inner');
       $this->db->where('t_mahasiswa.tahun_bintalwaka', $tahun);
+      $this->db->order_by('t_kelompok.nama_kelompok', 'asc');
       return $this->db->get();
     }
   }

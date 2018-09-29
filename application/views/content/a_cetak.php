@@ -21,12 +21,12 @@
         <div class="card">
           <div class="card-header bg-secondary text-white">Tiap Kelompok</div>
           <div class="card-body">
-            <form action="<?php echo base_url('c_cetak/idcard')?>" target="blank" method="post" id="cetak-id">
+            <form action="<?php echo base_url('c_cetak/absensi/kelompok')?>" target="blank" method="post" id="cetak-id">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label>Tahun :</label>
-                    <select class="form-control">
+                    <select class="form-control" name="tahun">
                       <?php foreach ($tahun as $thn) { ?>
                         <option value="<?php echo $thn->tahun; ?>"><?php echo $thn->tahun;?></option>
                       <?php } ?>
@@ -36,7 +36,7 @@
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label>Kelompok :</label>
-                    <select class="form-control">
+                    <select class="form-control" name="kelompok">
                       <?php foreach ($kelompok as $kel) { ?>
                         <option value="<?php echo $kel->id_kelompok; ?>"><?php echo $kel->nama_kelompok;?></option>
                       <?php } ?>
@@ -56,12 +56,12 @@
         <div class="card">
           <div class="card-header bg-secondary text-white">Tiap Fakultas</div>
           <div class="card-body">
-            <form action="<?php echo base_url('c_cetak/idcard')?>" target="blank" method="post" id="cetak-id">
+            <form action="<?php echo base_url('c_cetak/absensi/fakultas')?>" target="blank" method="post" id="cetak-id">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label>Tahun :</label>
-                    <select class="form-control">
+                    <select class="form-control" name="tahun">
                     <?php foreach ($tahun as $thn) { ?>
                         <option value="<?php echo $thn->tahun; ?>"><?php echo $thn->tahun;?></option>
                       <?php } ?>
@@ -71,7 +71,7 @@
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label>Fakultas :</label>
-                    <select class="form-control">
+                    <select class="form-control" name="fakultas">
                     <?php foreach ($fakultas as $fak) { ?>
                         <option value="<?php echo $fak->id_fakultas; ?>"><?php echo $fak->nama_fakultas;?></option>
                       <?php } ?>
@@ -87,18 +87,18 @@
         </div>
       </div>
     </div>
+    <!-- Semua -->
     <div class="row mb-3">
-      <!-- Semua -->
       <div class="col-lg-12">
         <div class="card">
           <div class="card-header bg-secondary text-white">Cetak Semua</div>
           <div class="card-body">
-            <form action="<?php echo base_url('c_cetak/idcard')?>" target="blank" method="post" id="cetak-id">
+            <form action="<?php echo base_url('c_cetak/absensi/semua')?>" target="blank" method="post" id="cetak-id">
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label>Tahun :</label>
-                    <select class="form-control">
+                    <select class="form-control" name="tahun">
                       <?php foreach ($tahun as $thn) { ?>
                         <option value="<?php echo $thn->tahun; ?>"><?php echo $thn->tahun;?></option>
                       <?php } ?>
