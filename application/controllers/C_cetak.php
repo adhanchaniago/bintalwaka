@@ -76,10 +76,30 @@ class C_cetak extends CI_Controller {
         
     }
 
-    public function idcard()
+    public function idcard($filter)
     {
-        $nim = $this->input->post('nim');
-        $mhs = $this->m_cetak->read($nim)->result();
+        switch ($filter) {
+            case 'individu':
+                $nim = $this->input->post('nim');
+                $data = $this->m_cetak->read($nim)->result();
+                $this->cetak_idcard($data);
+                break;
+            case 'kelompok':
+                $tahun = $this->input->post('tahun');
+                $kelompok = $this->input->post('kelompok');
+                $data = $this->m_cetak->idcard($filter,$tahun,$kelompok)->result();
+                $this->cetak_idcard($data);
+                break;
+            case 'fakultas':
+                $tahun = $this->input->post('tahun');
+                $fakultas = $this->input->post('fakultas');
+                $data = $this->m_cetak->idcard($filter,$tahun,$fakultas)->result();
+                $this->cetak_idcard($data);
+                break;
+            default:
+                # code...
+                break;
+        }
 
     }
 
@@ -229,7 +249,7 @@ class C_cetak extends CI_Controller {
         $pdf->Output();  
     }
 
-    public function cetak_idcard($mhs)
+    public function cetak_idcard($data)
     {
         $pdf = new Cfpdf('P','mm',array(100,65));
 
@@ -238,17 +258,19 @@ class C_cetak extends CI_Controller {
 
         $pdf->SetAutoPageBreak(false);
         $pdf->setMargins(2,5);
-        $pdf->AddPage();
-        $pdf->SetFont('Arial','B',12);
-        $pdf->Cell(0,4,'PESERTA','',1,'C');
-        $pdf->Ln(1);
-        $pdf->SetFont('Arial','',10);
-        foreach ($mhs as $m) {
+        foreach ($data as $m) {
+        
+            $pdf->AddPage();
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(0,4,'PESERTA','',1,'C');
+            $pdf->Ln(1);
+            $pdf->SetFont('Arial','',10);
+            //title
             $pdf->Cell(0,4,'BINTALWAKA '.$m->tahun_bintalwaka,'',1,'C');
             $pdf->Cell(0,4,'UKMK ST. IGNATIUS LOYOLA','',1,'C');
             $pdf->SetFont('Arial','',8);
             $pdf->Cell(0,4,'UNIVERSITAS MERDEKA MALANG','',1,'C');
-        
+            //body
             $pdf->Ln(3);
             $img_length = 30;
             $img_width = 40;
@@ -271,12 +293,12 @@ class C_cetak extends CI_Controller {
             $pdf->Cell(0,5,$m->nama_kelompok,'',1);
 
             $pdf->Ln(7);
-
+            //footer
             $pdf->SetFont('Arial','',9);
             $pdf->Cell(0,5,$m->lokasi,'',1,'C');
             $pdf->Cell(0,5,$m->tanggalbintalwaka,'',1,'C');
-            $pdf->Output('I',$m->nim.'_idcard.pdf');
-        }
+            }
+        $pdf->Output('I',date('Y').'_idcard.pdf');
     }
 
     //JSON Formatter
