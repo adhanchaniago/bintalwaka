@@ -257,7 +257,7 @@ class C_cetak extends CI_Controller {
             $pdf->Cell(0,5,$m->lokasi,'',1,'C');
             $pdf->Cell(0,5,$m->tanggalbintalwaka,'',1,'C');
             }
-        $pdf->Output('I',date('Y').'_idcard.pdf');
+        $pdf->Output('I',date('dmY').'_idcard.pdf');
     }
 
     public function cetak_sertifikat($data)
@@ -314,11 +314,11 @@ class C_cetak extends CI_Controller {
             $pdf->Ln(27);
 
             $pdf->SetFont('Arial','U',12);
-            $pdf->Cell($col,5,'Drs. Petrus Megu, MM.',0,0,'C');
-            $pdf->Cell($col,5,'Nama Ketua Pelaksana',0,0,'C');
-            $pdf->Cell($col,5,'Nama Ketua Umum UKMK',0,0,'C');
+            $pdf->Cell($col,5,$m->koordinator,0,0,'C');
+            $pdf->Cell($col,5,$m->ketupel,0,0,'C');
+            $pdf->Cell($col,5,$m->ketum,0,0,'C');
         }
-        $pdf->Output('I',$m->nim.'_sertifikat.pdf');
+        $pdf->Output('I',date('dmY').'_sertifikat.pdf');
         
         
     }
