@@ -72,7 +72,7 @@
     <!-- Footer -->
     <footer class="py-3 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <p class="m-0 text-center text-white">Copyright &copy; benben4567 2018</p>
       </div>
       <!-- /.container -->
     </footer>
