@@ -143,7 +143,7 @@
     <script src="<?= base_url('assets')?>/js/sb-admin-charts.min.js"></script>
     <script src="<?= base_url('assets')?>/js/sweetalert2.all.js"></script>
     <!-- Loading Overlay -->
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.6/dist/loadingoverlay.min.js"></script>
+    <script src="<?= base_url('assets')?>/js/loadingoverlay.min.js"></script>
 
     
   </div>
