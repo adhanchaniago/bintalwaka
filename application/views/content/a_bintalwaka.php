@@ -10,7 +10,7 @@
         <div class="tab-content" style="margin-top: 8px;">
             <!-- Bintalwaka -->
             <div id="bintalwaka" class="tab-pane fade show active">
-                <div class"row">
+                <div class="row">
                     <p>
                         <button type="button" class="btn btn-primary tambah-bintalwaka" style="margin-top:15px" data-toggle="modal" data-target="#tambah-bintalwaka" id="btntambahbintalwaka"><i class="fa fa-plus"></i> Tambah</button>
                     </p>
