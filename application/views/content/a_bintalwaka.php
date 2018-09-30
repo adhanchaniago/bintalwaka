@@ -23,6 +23,8 @@
                             <th>Tanggal</th>
                             <th>Lokasi</th>
                             <th>Tema</th>
+                            <th>Ketupel</th>
+                            <th>Ketum</th>
                             <th style="text-align:center">Aksi</th>
                         </tr>
                     </thead>
@@ -34,7 +36,7 @@
             <!-- Kelompok -->
             <div id="kelompok" class="tab-pane fade">
                 <!-- button tambah -->
-                <div class"row">
+                <div class="row">
                     <p>
                         <button type="button" class="btn btn-primary tambah-kelompok" style="margin-top:15px" data-toggle="modal" data-target="#tambah-kelompok" id="btntambahkelompok"><i class="fa fa-plus"></i> Tambah</button>
                     </p>
@@ -136,6 +138,18 @@
                 <label>Tema</label>
                 <input type="text" name="tema" class="form-control" required>
             </div>
+            <div class="form-group">
+                <label>Koordinator FPA Katolik</label>
+                <input type="text" name="koordinator" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Ketua Pelaksana</label>
+                <input type="text" name="ketupel" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Ketua Umum UKM Katolik</label>
+                <input type="text" name="ketum" class="form-control" required>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -170,6 +184,18 @@
             <div class="form-group">
                 <label>Tema</label>
                 <input type="text" name="tema" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Koordinator FPA Katolik</label>
+                <input type="text" name="koordinator" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Ketua Pelaksana</label>
+                <input type="text" name="ketupel" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Ketua Umum UKM Katolik</label>
+                <input type="text" name="ketum" class="form-control" required>
             </div>
         </div>
         <div class="modal-footer">

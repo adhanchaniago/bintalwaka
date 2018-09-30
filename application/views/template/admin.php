@@ -471,11 +471,17 @@
             var tanggal = data.tanggal;
             var lokasi = data.lokasi;
             var tema = data.tema;
+            var koordinator = data.koordinator;
+            var ketupel = data.ketupel;
+            var ketum = data.ketum;
 
             $('input[name=tahun]').val(tahun);
             $('input[name=tanggal]').val(tanggal);
             $('input[name=lokasi]').val(lokasi);
             $('input[name=tema]').val(tema);
+            $('input[name=koordinator]').val(koordinator);
+            $('input[name=ketupel]').val(ketupel);
+            $('input[name=ketum]').val(ketum);
             $("#edit-bintalwaka").modal('show');
           }
       });

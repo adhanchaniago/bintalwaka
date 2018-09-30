@@ -27,6 +27,8 @@ class C_bintalwaka extends CI_Controller {
                     $r->tanggal,
                     $r->lokasi,
                     $r->tema,
+                    $r->ketupel,
+                    $r->ketum,
                     "<button class=\"btn btn-primary btn-sm\" onclick=\"editbintalwaka(".$r->tahun.")\">EDIT</button> <button class=\"btn btn-danger btn-sm\" onclick=\"hapusbintalwaka(".$r->tahun.")\">DELETE</button>"
                );
           }
