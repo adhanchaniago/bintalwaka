@@ -2,8 +2,6 @@
 Fixme:
   ☐ Fix Frontpage/Admin Footer
   ✔ Readonly Input Box NIM di Pendaftaran @done(18-09-26 12:21)
-  ☐ Alert muncul jika cetak sertifikat/idcard mhs yg belum lunas
-  ☐ Alert muncul jika cetak sertifikat/idcard mhs yg sudah pernah cetak
 
 TODO:
   Cetak:
@@ -14,10 +12,10 @@ TODO:
   ✔ ID card berdasarkan tahun bintalwaka @done(18-09-29 22:05)
   ✔ ID card berdasarkan Kelompok @done(18-09-29 22:05)
   ✔ ID card berdasarkan Fakultas @done(18-09-29 22:05)
-  ☐ Sertifikat berdasarkan NIM (individu)
-  ☐ Sertifikat berdasarkan tahun bintalwaka
-  ☐ Sertifikat berdasarkan Kelompok
-  ☐ Sertifikat berdasarkan Fakultas
+  ✔ Sertifikat berdasarkan NIM (individu) @done(18-09-30 13:46)
+  ✔ Sertifikat berdasarkan tahun bintalwaka @done(18-09-30 13:46)
+  ✔ Sertifikat berdasarkan Kelompok @done(18-09-30 13:46)
+  ✔ Sertifikat berdasarkan Fakultas @done(18-09-30 13:46)
   Admin Dashboard:
   ✔ Cards jumlah mahasiswa yang mendaftar di tahun ini @done(18-09-28 17:34)
   ✔ Cards jumlah mahasiswa yang mendaftar keseluruhan @done(18-09-28 17:34)

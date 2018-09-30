@@ -9,71 +9,30 @@ class C_cetak extends CI_Controller {
         $this->jsonformatter(false,'berhasil',$data->result(),200);
     }
 
-    public function sertifikat()
+    public function sertifikat($filter)
     {
-        $nim = $this->input->post('nim');
-        $mhs = $this->m_cetak->read($nim)->result();
-        $base = base_url('assets/image/');
-        $tahun = 2018;
-        $pdf = new Cfpdf('L','mm','A4');
-        $pdf->AddPage();
-        $width = $pdf->getPageWidth();
-        $pdf->SetFont('Arial','',12);
-        foreach ($mhs as $m ) {
-        $pdf->Cell(57,5,'PANITIA BINTALWAKA '.$m->tahun_bintalwaka,0,1);
-        $pdf->Cell(70,5,'UKM KATOLIK ST. IGNATIUS LOYOLA',0,1);
-        $pdf->Cell(70,5,'UNIVERSITAS MERDEKA MALANG',0,1);
-        $pdf->Cell(70,8,'Jl. Terusan Dieng No.57 Malang',0,1);
-        $pdf->Cell(70,2,'(Basement D3 Perbankan)',0,1);
-        $pdf->setXY(($width-10)-20,8);
-        $pdf->Image($base.'logoukmk.jpg',null,null,20,20,'JPG');
-        $pdf->setXY(($width-10)-45,8);
-        $pdf->Image($base.'logounmer.jpg',null,null,20,20,'JPG');
-        
-        $pdf->Ln(17);
-            $pdf->SetFont('Arial','',20);
-            $pdf->Cell(0,10,'SERTIFIKAT ',0,2,'C');
-            $pdf->Cell(0,10,'DIBERIKAN KEPADA: ',0,1,'C');
-
-            $pdf->Ln(3);
-
-            $mid = $width/2;
-            $p = 30;
-            $x = $mid-($p/2);
-            $pdf->setX($x);
-            $pdf->Image($base."mahasiswa/".$m->image,null,null,30,40,'JPG');
-            $pdf->setX(10);
-
-            $pdf->SetFont('Arial','U',18);
-            $pdf->Cell(0,15,$m->nama_lengkap,0,1,'C');
-
-            $pdf->SetFont('Arial','',14);
-            $pdf->Cell(0,6,'Atas Partisipasinya Sebagai PESERTA BINTALWAKA '.$m->tahun_bintalwaka,0,1,'C');
-            $pdf->Cell(0,6,'di '.$m->lokasi.', tanggal '.$m->tanggalbintalwaka,0,1,'C');
-            $pdf->Cell(0,6,'Dengan Tema:',0,1,'C');
-            $pdf->SetFont('Arial','U',14);
-            $pdf->Cell(0,6,$m->tema,0,1,'C');
-            
-            $pdf->Ln(10);
-
-            $col = ($width-20)/3;
-            $pdf->SetFont('Arial','',13);
-            $pdf->Cell($col,6,'Koordinator FPA Katolik',0,0,'C');
-            $pdf->Cell($col,6,'Ketua Pelaksana',0,0,'C');
-            $pdf->Cell($col,6,'Ketua Umum UKMK',0,0,'C');
-
-            $pdf->Ln(27);
-
-            $pdf->SetFont('Arial','U',12);
-            $pdf->Cell($col,5,'Drs. Petrus Megu, MM.',0,0,'C');
-            $pdf->Cell($col,5,'Nama Ketua Pelaksana',0,0,'C');
-            $pdf->Cell($col,5,'Nama Ketua Umum UKMK',0,0,'C');
-            
-
-            $pdf->Output('I',$m->nim.'_sertifikat.pdf');
+        switch ($filter) {
+            case 'individu':
+                $nim = $this->input->post('nim');
+                $data = $this->m_cetak->read($nim)->result();
+                $this->cetak_sertifikat($data);
+                break;
+            case 'kelompok':
+                $tahun = $this->input->post('tahun');
+                $kelompok = $this->input->post('kelompok');
+                $data = $this->m_cetak->sertifikat($filter,$tahun,$kelompok)->result();
+                $this->cetak_sertifikat($data);
+                break;
+            case 'fakultas':
+                $tahun = $this->input->post('tahun');
+                $fakultas = $this->input->post('fakultas');
+                $data = $this->m_cetak->sertifikat($filter,$tahun,$fakultas)->result();
+                $this->cetak_sertifikat($data);
+                break;
+            default:
+                # code...
+                break;
         }
-        
-        
     }
 
     public function idcard($filter)
@@ -82,19 +41,19 @@ class C_cetak extends CI_Controller {
             case 'individu':
                 $nim = $this->input->post('nim');
                 $data = $this->m_cetak->read($nim)->result();
-                $this->cetak_idcard($data);
+                $this->cetak_sertifikat($data);
                 break;
             case 'kelompok':
                 $tahun = $this->input->post('tahun');
                 $kelompok = $this->input->post('kelompok');
                 $data = $this->m_cetak->idcard($filter,$tahun,$kelompok)->result();
-                $this->cetak_idcard($data);
+                $this->cetak_sertifikat($data);
                 break;
             case 'fakultas':
                 $tahun = $this->input->post('tahun');
                 $fakultas = $this->input->post('fakultas');
                 $data = $this->m_cetak->idcard($filter,$tahun,$fakultas)->result();
-                $this->cetak_idcard($data);
+                $this->cetak_sertifikat($data);
                 break;
             default:
                 # code...
@@ -300,6 +259,70 @@ class C_cetak extends CI_Controller {
             }
         $pdf->Output('I',date('Y').'_idcard.pdf');
     }
+
+    public function cetak_sertifikat($data)
+    {
+        $pdf = new Cfpdf('L','mm','A4');
+        $base = base_url('assets/image/');
+        $width = $pdf->getPageWidth();
+
+        foreach ($data as $m ) {
+            $pdf->AddPage();
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(57,5,'PANITIA BINTALWAKA '.$m->tahun_bintalwaka,0,1);
+            $pdf->Cell(70,5,'UKM KATOLIK ST. IGNATIUS LOYOLA',0,1);
+            $pdf->Cell(70,5,'UNIVERSITAS MERDEKA MALANG',0,1);
+            $pdf->Cell(70,8,'Jl. Terusan Dieng No.57 Malang',0,1);
+            $pdf->Cell(70,2,'(Basement D3 Perbankan)',0,1);
+            $pdf->setXY(($width-10)-20,8);
+            $pdf->Image($base.'logoukmk.jpg',null,null,20,20,'JPG');
+            $pdf->setXY(($width-10)-45,8);
+            $pdf->Image($base.'logounmer.jpg',null,null,20,20,'JPG');
+            
+            $pdf->Ln(17);
+            $pdf->SetFont('Arial','',20);
+            $pdf->Cell(0,10,'SERTIFIKAT ',0,2,'C');
+            $pdf->Cell(0,10,'DIBERIKAN KEPADA: ',0,1,'C');
+
+            $pdf->Ln(3);
+
+            $mid = $width/2;
+            $p = 30;
+            $x = $mid-($p/2);
+            $pdf->setX($x);
+            $pdf->Image($base."mahasiswa/".$m->image,null,null,30,40,'JPG');
+            $pdf->setX(10);
+
+            $pdf->SetFont('Arial','U',18);
+            $pdf->Cell(0,15,$m->nama_lengkap,0,1,'C');
+
+            $pdf->SetFont('Arial','',14);
+            $pdf->Cell(0,6,'Atas Partisipasinya Sebagai PESERTA BINTALWAKA '.$m->tahun_bintalwaka,0,1,'C');
+            $pdf->Cell(0,6,'di '.$m->lokasi.', tanggal '.$m->tanggalbintalwaka,0,1,'C');
+            $pdf->Cell(0,6,'Dengan Tema:',0,1,'C');
+            $pdf->SetFont('Arial','U',14);
+            $pdf->Cell(0,6,$m->tema,0,1,'C');
+            
+            $pdf->Ln(10);
+
+            $col = ($width-20)/3;
+            $pdf->SetFont('Arial','',13);
+            $pdf->Cell($col,6,'Koordinator FPA Katolik',0,0,'C');
+            $pdf->Cell($col,6,'Ketua Pelaksana',0,0,'C');
+            $pdf->Cell($col,6,'Ketua Umum UKMK',0,0,'C');
+
+            $pdf->Ln(27);
+
+            $pdf->SetFont('Arial','U',12);
+            $pdf->Cell($col,5,'Drs. Petrus Megu, MM.',0,0,'C');
+            $pdf->Cell($col,5,'Nama Ketua Pelaksana',0,0,'C');
+            $pdf->Cell($col,5,'Nama Ketua Umum UKMK',0,0,'C');
+        }
+        $pdf->Output('I',$m->nim.'_sertifikat.pdf');
+        
+        
+    }
+
 
     //JSON Formatter
 	public function jsonformatter($error,$msg,$data)
